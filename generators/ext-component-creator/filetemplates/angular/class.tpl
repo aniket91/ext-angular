@@ -9,6 +9,8 @@ import {
 import { base } from './base';
 export class {classname}MetaData {
   public static XTYPE: string = '{xtype}';
+  public static PROPERTIESOBJECT: any = {
+{sPROPERTIESOBJECT}};
   public static PROPERTIES: string[] = [
 {sPROPERTIES}];
   public static EVENTS: any[] = [
@@ -17,7 +19,7 @@ export class {classname}MetaData {
 {sEVENTNAMES}];
 }
 @Component({
-  selector: 'ext-{classname}', 
+  selector: '{xtype}', 
   inputs: {classname}MetaData.PROPERTIES,
   outputs: {classname}MetaData.EVENTNAMES,
   providers: [{provide: base, useExisting: forwardRef(() => Ext{capclassname}Component)}],

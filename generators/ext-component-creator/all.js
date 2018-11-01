@@ -95,9 +95,9 @@ function launch(framework, data, srcFolder, libFolder, templateToolkitFolder, mo
               num++;
               o.xtype = aliases[alias].substring(7)
               ///testing
-              if (o.xtype == 'grid'  || o.xtype == 'button') {
+              //if (o.xtype == 'grid'  || o.xtype == 'button') {
                 oneItem(o, libFolder, framework, extension, num, o.xtype, alias, moduleVars)
-              }
+              //}
             }
             else {
               console.log(``,'not: ' + o.name + ' - ' + o.alias)
@@ -113,11 +113,21 @@ function launch(framework, data, srcFolder, libFolder, templateToolkitFolder, mo
   // moduleVars.imports = moduleVars.imports.substring(0, moduleVars.imports.length - 2); moduleVars.imports = moduleVars.imports + ';' + newLine
   // moduleVars.imports = moduleVars.imports + `import { ExtClassComponent } from './ext-class.component';${newLine}`
 
-   moduleVars.exports = moduleVars.exports.substring(0, moduleVars.exports.length - 2); moduleVars.exports = moduleVars.exports + '' + newLine
   // moduleVars.exports = moduleVars.exports + `    ExtClassComponent${newLine}`
 
-   moduleVars.declarations = moduleVars.declarations.substring(0, moduleVars.declarations.length - 2); moduleVars.declarations = moduleVars.declarations + '' + newLine
   // moduleVars.declarations = moduleVars.declarations + `    ExtClassComponent${newLine}`
+
+
+
+
+  moduleVars.imports = moduleVars.imports.substring(0, moduleVars.imports.length - 2); moduleVars.imports = moduleVars.imports + ';' + newLine
+  //moduleVars.imports = moduleVars.imports + `import { ExtClassComponent } from './ext-class.component';${newLine}`
+
+  moduleVars.exports = moduleVars.exports.substring(0, moduleVars.exports.length - 2); moduleVars.exports = moduleVars.exports + '' + newLine
+  //moduleVars.exports = moduleVars.exports + `    ExtClassComponent${newLine}`
+
+  moduleVars.declarations = moduleVars.declarations.substring(0, moduleVars.declarations.length - 2); moduleVars.declarations = moduleVars.declarations + '' + newLine
+  //moduleVars.declarations = moduleVars.declarations + `    ExtClassComponent${newLine}`
 
   var exportall = ''
   exportall = exportall + `export * from './lib/ext-${framework}-${toolkit}.module';${newLine}`
@@ -127,7 +137,7 @@ function launch(framework, data, srcFolder, libFolder, templateToolkitFolder, mo
       var publicApiFile = `${srcFolder}public_api.${extension}`
       fs.writeFile(publicApiFile, doPublic_Api(exportall, templateToolkitFolder), function(err) {if(err) { return console.log(err); } });
       log(`publicApiFile`,`${publicApiFile}`)
-      var classFile = `${libFolder}ext-class.component.${extension}`
+      //var classFile = `${libFolder}ext-class.component.${extension}`
       //fs.writeFile(classFile, doExtClass(), function(err) {if(err){return console.log(err);} })
       //log(`classFile`,`${classFile}`)
       var baseFile = `${libFolder}base.${extension}`
@@ -148,8 +158,9 @@ function launch(framework, data, srcFolder, libFolder, templateToolkitFolder, mo
 
 function oneItem(o, libFolder, framework, extension, num, xtype, alias, moduleVars) {
   var classname =  o.xtype.replace(/-/g, "_")
+  //var classname =  o.xtype
   var capclassname = classname.charAt(0).toUpperCase() + classname.slice(1)
-  var classFile = `${libFolder}ext-${classname}.component.${extension}`
+  var classFile = `${libFolder}ext-${o.xtype}.component.${extension}`
   console.log(`${xtype}${tb}${tb}${('  ' + num).substr(-3)}_${alias}${tb}${classFile}`)
   var commaOrBlank = "";
   var tab = "\t";
@@ -243,7 +254,7 @@ function oneItem(o, libFolder, framework, extension, num, xtype, alias, moduleVa
       break;
   }
 
-  moduleVars.imports = moduleVars.imports + `import { Ext${capclassname}Component } from './ext-${classname}.component';${newLine}`
+  moduleVars.imports = moduleVars.imports + `import { Ext${capclassname}Component } from './ext-${o.xtype}.component';${newLine}`
   moduleVars.declarations = moduleVars.declarations + `    Ext${capclassname}Component,${newLine}`
   moduleVars.exports = moduleVars.exports + `    Ext${capclassname}Component,${newLine}`
 
@@ -328,6 +339,11 @@ function doModule(moduleVars) {
 
 function doExtClass() {
   return `declare var Ext: any
+import { Component } from '@angular/core';
+@Component({
+  selector: 'ext-class', 
+  template: '<ng-template #dynamic></ng-template>'
+})
 export class ExtClassComponent {
   public classname: any
   public extend: any
