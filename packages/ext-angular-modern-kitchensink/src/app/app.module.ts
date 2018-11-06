@@ -10,7 +10,7 @@ import { ExtAngularModernModule } from 'ext-angular-modern'
 //services
 import { AgencyService } from './service/agency.service';
 
-import { LayoutComponent } from './layout.component';
+import { AppComponent } from './app.component';
 
 
 //in main
@@ -70,8 +70,7 @@ export const routingModule: ModuleWithProviders = RouterModule.forRoot(routes);
     routingModule
   ],
 	declarations: [
-    LayoutComponent,
-
+    	AppComponent,
 		DetailComponent,
 		FooterComponent,
 		HeaderComponent,
@@ -99,6 +98,6 @@ export const routingModule: ModuleWithProviders = RouterModule.forRoot(routes);
 		FooterComponent, 
 		ChartComponent
 	],
-	bootstrap: [LayoutComponent]
+	bootstrap: [AppComponent]
 })
 export class AppModule { }
