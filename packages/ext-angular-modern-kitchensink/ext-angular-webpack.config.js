@@ -1,4 +1,12 @@
 const ExtWebpackPlugin = require('@sencha/ext-angular-webpack-plugin')
+const WebpackShellPlugin = require('webpack-shell-plugin-next')
+//const HtmlWebpackPlugin = require('html-webpack-plugin')
+/*
+    new HtmlWebpackPlugin({
+      template: 'index.html',
+      hash: true
+    }), 
+*/
 const path = require('path')
 //const sourcePath = path.join(__dirname, './src')
 
@@ -29,6 +37,13 @@ module.exports = {
         'calendar', 
         'charts'
       ]
+    }),
+    new WebpackShellPlugin({
+      onBuildEnd:{
+        scripts: ['node extract-code.js'],
+        blocking: false,
+        parallel: true
+      }
     })
   ]
 }
