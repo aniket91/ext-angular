@@ -9,10 +9,12 @@ import {navTreeRoot} from '../../../examples/index';
 })
 export class LandingpageComponent implements OnInit {
 
+  
   treeStore = Ext.create('Ext.data.TreeStore', {
     rootVisible: true,
     root: navTreeRoot
   });
+  
 
   constructor() { }
 
@@ -35,8 +37,11 @@ export class LandingpageComponent implements OnInit {
   filterNav1(field, value) {
     console.log("In filterNav");
     const store = this.treeStore;
-    this.filterRegex = new RegExp(`(${Ext.String.escapeRegex(value)})`, 'i');
+    var escapeRegex = Ext.String.escapeRegex(value);
+    console.log(escapeRegex);
+    this.filterRegex = new RegExp(`(escapeRegex)`, 'i');
     store.filterBy(record => this.containsMatches(record));
+    
   }
 
   containsMatches(node) {

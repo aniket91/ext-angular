@@ -25,7 +25,7 @@ const treeRoot = {
             { text: 'Forms', navIcon: 'icon-forms', children: [
                 { text: 'CheckBoxField', component: ButtonComponent, layout: 'center', navIcon: 'icon-Forms-CheckBoxField'  },
                 { text: 'ComboBoxField', component: ButtonComponent, layout: 'center', navIcon: 'icon-Forms-ComboBoxField'  },
-                { text: 'ContainerField', component: ButtonComponent, layout: false ? 'auto' : 'center', navIcon: 'icon-Forms-ContainerField'  },
+                { text: 'ContainerField', component: ButtonComponent, layout: Ext.os.is.Phone ? 'auto' : 'center', navIcon: 'icon-Forms-ContainerField'  },
                 { text: 'DatePickerField', component: ButtonComponent, layout: 'center', navIcon: 'icon-Forms-DatePickerField'  },
                 { text: 'EmailField', component: ButtonComponent , layout: 'center', navIcon: 'icon-Forms-EmailField' },
                 { text: 'FieldSet', component: ButtonComponent, layout: 'center', navIcon: 'icon-Forms-FieldSet'  },
@@ -61,28 +61,28 @@ const treeRoot = {
                 { text: 'vbox', component: ButtonComponent, layout: 'auto', navIcon: 'icon-layout-vertical-box' }
             ]},
             { text: 'Lists', navIcon: 'icon-lists', children: [
-                { text: 'Basic List', component: ButtonComponent, layout: 'center', navIcon: 'icon-basic-list' },
-                { text: 'Disclosure', component: ButtonComponent, layout: 'center', navIcon: 'icon-disclosure-list' },
-                { text: 'Grouped', component: ButtonComponent, layout: 'center', navIcon: 'icon-grouped-list' },
-                { text: 'NestedList', component: ButtonComponent, layout: 'center', navIcon: 'icon-nested-list' },
-                { text: 'Pull Refresh', component: ButtonComponent, layout: 'center', navIcon: 'icon-pullrefresh-list' },
-                { text: 'Paging', component: ButtonComponent, layout: 'center', navIcon: 'icon-listpaging-list' },
-                { text: 'Basic Accordion Swiper', component: ButtonComponent, layout: 'center', navIcon: 'icon-basic-accordion-swiper'},
-                { text: 'Basic Step Swiper', component: ButtonComponent, layout: 'center', navIcon: 'icon-basic-step-swiper'},
-                { text: 'Undoable Accordion Swiper', component: ButtonComponent, layout: 'center', navIcon: 'icon-undoable-accordion-swiper'},
-                { text: 'Undoable Step Swiper', component: ButtonComponent, layout: 'center', navIcon: 'icon-undoable-step-swiper'}
+                { text: 'Basic List', component: ButtonComponent, layout: Ext.os.is.Phone ? 'fit': 'center', navIcon: 'icon-basic-list' },
+                { text: 'Disclosure', component: ButtonComponent, layout: Ext.os.is.Phone ? 'fit': 'center', navIcon: 'icon-disclosure-list' },
+                { text: 'Grouped', component: ButtonComponent, layout: Ext.os.is.Phone ? 'fit': 'center', navIcon: 'icon-grouped-list' },
+                { text: 'NestedList', component: ButtonComponent, layout: Ext.os.is.Phone ? 'fit': 'center', navIcon: 'icon-nested-list' },
+                { text: 'Pull Refresh', component: ButtonComponent, layout: Ext.os.is.Phone ? 'fit': 'center', navIcon: 'icon-pullrefresh-list' },
+                { text: 'Paging', component: ButtonComponent, layout: Ext.os.is.Phone ? 'fit': 'center', navIcon: 'icon-listpaging-list' },
+                { text: 'Basic Accordion Swiper', component: ButtonComponent, layout: Ext.os.is.Phone ? 'fit': 'center', navIcon: 'icon-basic-accordion-swiper'},
+                { text: 'Basic Step Swiper', component: ButtonComponent, layout: Ext.os.is.Phone ? 'fit': 'center', navIcon: 'icon-basic-step-swiper'},
+                { text: 'Undoable Accordion Swiper', component: ButtonComponent, layout: Ext.os.is.Phone ? 'fit': 'center', navIcon: 'icon-undoable-accordion-swiper'},
+                { text: 'Undoable Step Swiper', component: ButtonComponent, layout: Ext.os.is.Phone ? 'fit': 'center', navIcon: 'icon-undoable-step-swiper'}
             ]},
             { text: 'Media', navIcon: 'x-fa fa-video-camera', children: [
                 { text: 'Video', navIcon: 'icon-video', component: ButtonComponent },
                 { text: 'Audio', navIcon: 'icon-audio', component: ButtonComponent }
             ] },
             { text: 'Panels', navIcon: 'icon-panels', children: [
-                { text: 'Basic Panels', component: ButtonComponent, layout: 'center', navIcon: 'icon-panels' },
-                { text: 'Resizable Handle', component: ButtonComponent, layout: 'fit', navIcon: 'icon-panel-handleresize', hidden: false },
-                { text: 'Collapsible Panel', component: ButtonComponent, layout: 'center', navIcon: 'icon-panel-collapsible' },
+                { text: 'Basic Panels', component: ButtonComponent, layout: Ext.os.is.Phone ? 'auto': 'center', navIcon: 'icon-panels' },
+                { text: 'Resizable Handle', component: ButtonComponent, layout: 'fit', navIcon: 'icon-panel-handleresize', hidden: Ext.os.is.Phone },
+                { text: 'Collapsible Panel', component: ButtonComponent, layout: Ext.os.is.Phone ? 'fit': 'center', navIcon: 'icon-panel-collapsible' },
                 { text: 'Basic Date Panel', component: ButtonComponent, layout: 'center', navIcon: 'icon-panel-date' },
-                { text: 'Advanced Date Panel', component: ButtonComponent, layout: 'center', navIcon: 'icon-panel-date-adv', hidden: false },
-                { text: 'Time Panel', component: ButtonComponent, layout: 'center', navIcon: 'icon-panel-time', hidden: false },
+                { text: 'Advanced Date Panel', component: ButtonComponent, layout: 'center', navIcon: 'icon-panel-date-adv', hidden: Ext.os.is.Phone },
+                { text: 'Time Panel', component: ButtonComponent, layout: 'center', navIcon: 'icon-panel-time', hidden: Ext.os.is.Phone },
             ]},
             { text: 'Popups', navIcon: 'icon-windows', children: [
                 { text: 'Dialog', component: ButtonComponent, layout: 'center', navIcon: 'icon-basic-dialog' },
@@ -98,15 +98,15 @@ const treeRoot = {
                 { text: 'Icon Tabs', component: ButtonComponent, navIcon: 'icon-icon-tabs' },
                 { text: 'Desktop Tabs', component: ButtonComponent, navIcon: 'icon-Desktop-Tabs' },
                 { text: 'Closable', component: ButtonComponent, navIcon: 'icon-Closable-Tabs' },
-                { text: 'ScrollingTabs', component: ButtonComponent, layout: 'center', navIcon: 'icon-Scrolling-Tabs' },
-                { text: 'TabBar', component: ButtonComponent, layout: 'center', navIcon: 'icon-Tab-Bar' }        
+                { text: 'ScrollingTabs', component: ButtonComponent, layout: Ext.os.is.Phone ? 'fit': 'center', navIcon: 'icon-Scrolling-Tabs' },
+                { text: 'TabBar', component: ButtonComponent, layout: Ext.os.is.Phone ? 'fit': 'center', navIcon: 'icon-Tab-Bar' }        
             ]},
             { text: 'TitleBar', component: ButtonComponent, navIcon: 'icon-Title-Bar' },
             { text: 'Toolbar', component: ButtonComponent, navIcon: 'icon-toolbar' },
             { text: 'ToolTip', component: ButtonComponent, layout: 'center', navIcon: 'icon-tooltips'  },
             { text: 'Touch Events', component: ButtonComponent, navIcon: 'icon-touch-events' },
             //{ text: 'Transition', component: Transition, navIcon: 'icon-Transition' },
-            { text: 'Wizard', component: ButtonComponent, navIcon: 'icon-layout-card-indicator', layout: 'center' },
+            { text: 'Wizard', component: ButtonComponent, navIcon: 'icon-layout-card-indicator', layout: Ext.os.is.Phone ? 'fit': 'center' },
         ]},
         { text: 'Grids', navIcon: 'icon-grids', children: [
             { text: 'Core Features', navIcon: 'icon-grids', children: [
@@ -132,7 +132,7 @@ const treeRoot = {
             { text: 'Redux Grid', component: ButtonComponent, navIcon: 'icon-Redux-Grid' }
         ] },
         { text: 'Trees', navIcon: 'icon-trees', children: [
-            { text: 'TreeList', component: ButtonComponent, layout: 'center', navIcon: 'icon-tree-list' },
+            { text: 'TreeList', component: ButtonComponent, layout: Ext.os.is.Phone ? 'fit': 'center', navIcon: 'icon-tree-list' },
             { text: 'Tree', premium: true, component: ButtonComponent, navIcon: 'icon-trees' },
             { text: 'Editable Tree', premium: true, component: ButtonComponent, navIcon: 'icon-tree-editable'},
             { text: 'Tree Grid', premium: true, component: ButtonComponent, navIcon: 'icon-tree-grid' },
