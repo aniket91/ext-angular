@@ -1,6 +1,8 @@
 
 import {ButtonComponent} from './Button/Button';
 
+declare var Ext: any;
+
 const treeRoot = {
     id: '/',
     text: 'All',
