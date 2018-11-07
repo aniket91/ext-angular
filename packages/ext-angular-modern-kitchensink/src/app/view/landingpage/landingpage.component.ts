@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {navTreeRoot} from '../../../examples/index';
 
+declare var Ext: any;
 
 @Component({
   selector: 'app-landingpage',
