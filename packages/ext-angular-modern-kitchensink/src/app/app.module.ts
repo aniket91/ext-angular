@@ -38,6 +38,11 @@ import { LandingpageComponent } from './view/landingpage/landingpage.component';
 import { Route, RouterModule } from '@angular/router';
 import { ModuleWithProviders } from "@angular/core";
 
+import {ButtonComponent} from "../examples/Button/Button"
+
+
+
+
 interface ExtAngularRoute extends Route {
   text?: string;
   iconCls?: string;
@@ -59,7 +64,13 @@ const routes: ExtAngularRoutes = [
 	{ path: 'simplegrid', component: SimpleGridComponent, text: 'Simple Grid', iconCls: 'x-fa fa-calendar', xtype: 'homeview', leaf: true },
 	{ path: 'boilerplate', component: BoilerplateComponent, text: 'Boilerplate', iconCls: 'x-fa fa-calendar', xtype: 'homeview', leaf: true },
 	{ path: 'configurator', component: ConfiguratorComponent, text: 'Configurator', iconCls: 'x-fa fa-calendar', xtype: 'homeview', leaf: true },
-	{ path: 'landingpage', component: LandingpageComponent, text: 'LandingPage', iconCls: 'x-fa fa-calendar', xtype: 'homeview', leaf: true }
+
+	//landing page
+	{ path: 'landingpage', component: LandingpageComponent, text: 'LandingPage', iconCls: 'x-fa fa-calendar', xtype: 'homeview', leaf: true },
+
+
+	//example components
+	{ path: 'button', component: ButtonComponent, text: 'Button', iconCls: 'x-fa fa-calendar', xtype: 'homeview', leaf: true },
 ];
 export const routingModule: ModuleWithProviders = RouterModule.forRoot(routes);
 
@@ -91,7 +102,8 @@ export const routingModule: ModuleWithProviders = RouterModule.forRoot(routes);
 		SimpleGridComponent,
 		SpendingDetailComponent,
 		WidgetGridComponent,
-		LandingpageComponent
+		LandingpageComponent,
+		ButtonComponent
 	],
 	providers: [
 		AgencyService,
@@ -99,7 +111,8 @@ export const routingModule: ModuleWithProviders = RouterModule.forRoot(routes);
 	entryComponents: [
 		SideBarComponent, 
 		FooterComponent, 
-		ChartComponent
+		ChartComponent,
+		ButtonComponent
 	],
 	bootstrap: [LayoutComponent]
 })

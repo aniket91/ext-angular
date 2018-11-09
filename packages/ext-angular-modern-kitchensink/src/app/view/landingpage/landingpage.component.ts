@@ -1,8 +1,10 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ViewChild, ViewContainerRef, ComponentFactoryResolver, ComponentRef, ComponentFactory } from '@angular/core';
 import {navTreeRoot} from '../../../examples/index';
 
 import { Location } from '@angular/common';
 import { Router, NavigationEnd } from '@angular/router';
+
+import {ButtonComponent} from '../../../examples/Button/Button';
 
 declare var Ext: any;
 
@@ -13,7 +15,7 @@ declare var Ext: any;
 })
 export class LandingpageComponent implements OnInit {
 
-  code = window._code;
+  //code = window._code;
   
   treeStore = Ext.create('Ext.data.TreeStore', {
     rootVisible: true,
@@ -30,10 +32,13 @@ export class LandingpageComponent implements OnInit {
   nodeText;
   nodeItems = [];
 
+  componentRef: any;
 
-  
+  @ViewChild('examplesContainer', { read: ViewContainerRef }) entry: ViewContainerRef;
 
-  constructor(location: Location, router: Router, changeDetectorRef: ChangeDetectorRef) { 
+
+  constructor(location: Location, router: Router, changeDetectorRef: ChangeDetectorRef,
+    private resolver: ComponentFactoryResolver) { 
     router.events.subscribe((val) => {
       if(val instanceof NavigationEnd) {
         console.log(location.path(true));
@@ -53,16 +58,16 @@ export class LandingpageComponent implements OnInit {
             this.component = this.selectedNavNode.get('component');
             console.log("Component: " + this.component);
             if(this.selectedNavNode.get('layout') != null) {
-              this.layout = this.selectedNavNode.get('layout');
-              console.log("this.layout : " + this.layout);
+              //this.layout = this.selectedNavNode.get('layout');
+              //console.log("this.layout : " + this.layout);
             }
-            this.files = this.code[this.nodeText.replace(/\s/g, '')];
-            console.log("this.files : " + this.files);
+            //this.files = this.code[this.nodeText.replace(/\s/g, '')];
+            //console.log("this.files : " + this.files);
           }
           else {
               console.log("selectedNavNode not found.")
           }
-
+          this.createComponent(null);
 
         }
 
@@ -72,12 +77,28 @@ export class LandingpageComponent implements OnInit {
 
   }
 
+
+  createComponent(message) {
+    console.log("In createComponent. message : " + message);
+    this.entry.clear();
+    const factory = this.resolver.resolveComponentFactory(ButtonComponent);
+    this.componentRef = this.entry.createComponent(factory);
+    console.log(this.componentRef);
+    this.componentRef.instance.message = message;
+  }
+
+
+  destroyComponent() {
+    console.log("In destroyComponent.");
+    this.componentRef.destroy();
+  }
+
   ngOnInit() {
 
   } 
 
   filterRegex;
-  showTreeFlag = false;
+  showTreeFlag = true;
   
 
   toggleTree = function(){
