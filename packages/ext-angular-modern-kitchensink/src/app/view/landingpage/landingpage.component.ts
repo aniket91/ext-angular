@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import {navTreeRoot} from '../../../examples/index';
+
+import { Location } from '@angular/common';
+import { Router, NavigationEnd } from '@angular/router';
 
 declare var Ext: any;
 
@@ -10,25 +13,77 @@ declare var Ext: any;
 })
 export class LandingpageComponent implements OnInit {
 
+  code = window._code;
   
   treeStore = Ext.create('Ext.data.TreeStore', {
     rootVisible: true,
     root: navTreeRoot
   });
+
+  nodeId;
+  selectedNavNode;
+  component;
+  layout = "fit";
+  files;
+
+
+  nodeText;
+  nodeItems = [];
+
+
   
 
-  constructor() { }
+  constructor(location: Location, router: Router, changeDetectorRef: ChangeDetectorRef) { 
+    router.events.subscribe((val) => {
+      if(val instanceof NavigationEnd) {
+        console.log(location.path(true));
+        console.log(val);
+        var path = location.path(true);
+        if(path){
+          this.nodeId = path.substring(path.indexOf("#")+1, path.length);
+          console.log("nodeId : " + this.nodeId);
+          this.selectedNavNode = this.treeStore.getNodeById(this.nodeId);
+          console.log(this.selectedNavNode);
+          if(this.selectedNavNode != null) {
+            this.nodeText = this.selectedNavNode.get('text');
+            console.log("this.nodeText : " + this.nodeText);
+            this.nodeItems.unshift(
+            );
+  
+            this.component = this.selectedNavNode.get('component');
+            console.log("Component: " + this.component);
+            if(this.selectedNavNode.get('layout') != null) {
+              this.layout = this.selectedNavNode.get('layout');
+              console.log("this.layout : " + this.layout);
+            }
+            this.files = this.code[this.nodeText.replace(/\s/g, '')];
+            console.log("this.files : " + this.files);
+          }
+          else {
+              console.log("selectedNavNode not found.")
+          }
 
-  ngOnInit() {
+
+        }
+
+      }
+
+    })
 
   }
 
+  ngOnInit() {
+
+  } 
+
   filterRegex;
-  showTreeFlag = true;
+  showTreeFlag = false;
+  
 
   toggleTree = function(){
-    console.log("toggleTree");
+    console.log("toggleTree. Before showTreeFlag : " + this.showTreeFlag);
     this.showTreeFlag = !this.showTreeFlag;
+    console.log("toggleTree. After showTreeFlag : " + this.showTreeFlag);
   }
 
   filterNav(){
@@ -53,7 +108,12 @@ export class LandingpageComponent implements OnInit {
   }
 
   selectionChanged(tree, node) {
-    console.log("Selection changed!");
+    console.log("Selection changed!. Tree : " + tree + " node : " + node);
+  }
+
+  navigate(node) {
+    console.log("In naviagte : " + node.getId());
+    //debugger;
   }
 
 }
