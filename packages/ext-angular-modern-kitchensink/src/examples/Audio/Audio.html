@@ -1,0 +1,19 @@
+<container [layout]="{ type: 'vbox', align: 'stretch', pack: 'center' }" [padding]="10">
+    <container 
+        [shadow]="true" 
+        [layout]="'fit'"
+    >
+        <audio
+            #audioRef
+            [loop]="true" 
+            [url]="'resources/audio/crash.mp3'"
+            [enableControls]="true"
+        >
+        </audio>
+        <!--<button [text]="playing ? 'Play Audio' : 'Pause Audio'" [margin]="20" [handler]="this.toggleAudioAndroid.bind(this)">
+        </button>
+        -->
+        <button [text]="playing ? 'Play Audio' : 'Pause Audio'" [margin]="20" [handler]="this.toggleAudioAndroid.bind(this)">
+            </button>
+    </container>
+</container>

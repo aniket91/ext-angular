@@ -39,6 +39,7 @@ import { Route, RouterModule } from '@angular/router';
 import { ModuleWithProviders } from "@angular/core";
 
 import {ButtonComponent} from "../examples/Button/Button"
+import {AudioComponent} from "../examples/Audio/Audio"
 
 
 
@@ -71,6 +72,8 @@ const routes: ExtAngularRoutes = [
 
 	//example components
 	{ path: 'button', component: ButtonComponent, text: 'Button', iconCls: 'x-fa fa-calendar', xtype: 'homeview', leaf: true },
+	{ path: 'audio', component: AudioComponent, text: 'Audio', iconCls: 'x-fa fa-calendar', xtype: 'homeview', leaf: true },
+
 ];
 export const routingModule: ModuleWithProviders = RouterModule.forRoot(routes);
 
@@ -103,7 +106,8 @@ export const routingModule: ModuleWithProviders = RouterModule.forRoot(routes);
 		SpendingDetailComponent,
 		WidgetGridComponent,
 		LandingpageComponent,
-		ButtonComponent
+		ButtonComponent,
+		AudioComponent
 	],
 	providers: [
 		AgencyService,

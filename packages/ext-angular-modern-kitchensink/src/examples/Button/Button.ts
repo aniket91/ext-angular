@@ -1,4 +1,4 @@
-import {Component, OnInit, OnChanges , ElementRef, Renderer, ViewChild, SimpleChanges, Input} from '@angular/core'
+import {Component, OnInit, OnChanges , ElementRef, Renderer, ViewChild, SimpleChanges} from '@angular/core'
 
 declare var Ext: any;
 
@@ -9,27 +9,21 @@ declare var Ext: any;
 })
 export class ButtonComponent implements OnInit, OnChanges  {
 
-
-  @Input()
   style = 'Menu';
-  @Input()
   type = 'Text';
-  @Input()
   round = true;
-  @Input()
   iconCls;
-  @Input()
   ui;
-  @Input()
   menu;
-  @Input()
   refreshFlag:boolean;
+
 
   onStyleChange = function(item){
     //debugger;
     console.log("onStyleChange : " + item._text);
     this.style = item._text; 
     this.refreshFlag = !this.refreshFlag;
+    console.log("this.refreshFlag : " + this.refreshFlag);
   }
 
   onTypeChange = function(item){
@@ -37,6 +31,7 @@ export class ButtonComponent implements OnInit, OnChanges  {
     console.log("onTypeChange : " + item._text);
     this.type = item._text; 
     this.refreshFlag = !this.refreshFlag;
+    console.log("this.refreshFlag : " + this.refreshFlag);
   }
 
   toggleRound = function(){
@@ -77,7 +72,7 @@ export class ButtonComponent implements OnInit, OnChanges  {
 
   ngOnInit() {
 
-    this.refreshFlag = false;
+    //this.refreshFlag = false;
 
     this.iconCls = this.type.indexOf('Icon') !== -1 ? 'x-fa fa-heart' : null;
     if (this.round) {

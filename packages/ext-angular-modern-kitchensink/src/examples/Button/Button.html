@@ -1,13 +1,11 @@
-<button text='{{refreshFlag}}'></button>
+<!--<button [text]="refreshFlag? 'true': 'false'"></button>-->
+<button [text]="refreshFlag? 'true': 'false'" #buttonRef></button>
 <container [padding]="10">
     <container 
     [layout]="{ type: 'hbox', pack: 'left'}"
     margin="0 0 10 0"
     [defaults]="{ margin: '0 10 0 0' }"
     [width]="550">
-
-
-
 
     <button ui="action raised" text="Style">
             <menu [defaults]="{ handler: onStyleChange, group: 'buttonstyle' }">
