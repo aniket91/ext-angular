@@ -40,6 +40,18 @@ import { ModuleWithProviders } from "@angular/core";
 
 import {ButtonComponent} from "../examples/Button/Button"
 import {AudioComponent} from "../examples/Audio/Audio"
+import {CalendarPanelComponent} from "../examples/Calendar/CalendarPanel/CalendarPanel"
+import {CalendarDaysViewComponent} from "../examples/Calendar/DaysView/DaysView"
+import {CalendarDragResizeValidationComponent} from "../examples/Calendar/DragResizeValidation/DragResizeValidation"
+import {CalendarMonthViewComponent} from "../examples/Calendar/MonthView/MonthView"
+import {CalendarWeekViewComponent} from "../examples/Calendar/WeekView/WeekView"
+import {CalendarTimezoneSupportComponent} from "../examples/Calendar/TimezoneSupport/TimezoneSupport"
+
+
+
+
+
+import {CalendarService} from "../examples/Calendar/Calendar.service"
 
 
 
@@ -73,6 +85,12 @@ const routes: ExtAngularRoutes = [
 	//example components
 	{ path: 'button', component: ButtonComponent, text: 'Button', iconCls: 'x-fa fa-calendar', xtype: 'homeview', leaf: true },
 	{ path: 'audio', component: AudioComponent, text: 'Audio', iconCls: 'x-fa fa-calendar', xtype: 'homeview', leaf: true },
+	{ path: 'calendarpanel', component: CalendarPanelComponent, text: 'Calendar Panel', iconCls: 'x-fa fa-calendar', xtype: 'homeview', leaf: true },
+	{ path: 'calendardaysview', component: CalendarDaysViewComponent, text: 'Calendar Days view', iconCls: 'x-fa fa-calendar', xtype: 'homeview', leaf: true },
+	{ path: 'calendardragresizevalidationView', component: CalendarDragResizeValidationComponent, text: 'Calendar drah rezize validation view', iconCls: 'x-fa fa-calendar', xtype: 'homeview', leaf: true },
+	{ path: 'calendarmonthview', component: CalendarMonthViewComponent, text: 'Calendar month view', iconCls: 'x-fa fa-calendar', xtype: 'homeview', leaf: true },
+	{ path: 'calendarweekview', component: CalendarWeekViewComponent, text: 'Calendar week view', iconCls: 'x-fa fa-calendar', xtype: 'homeview', leaf: true },
+	{ path: 'calendartzsupportview', component: CalendarTimezoneSupportComponent, text: 'Calendar TZ support view', iconCls: 'x-fa fa-calendar', xtype: 'homeview', leaf: true },
 
 ];
 export const routingModule: ModuleWithProviders = RouterModule.forRoot(routes);
@@ -105,12 +123,23 @@ export const routingModule: ModuleWithProviders = RouterModule.forRoot(routes);
 		SimpleGridComponent,
 		SpendingDetailComponent,
 		WidgetGridComponent,
+
 		LandingpageComponent,
+
 		ButtonComponent,
-		AudioComponent
+		AudioComponent,
+		CalendarPanelComponent,
+		CalendarDaysViewComponent,
+		CalendarDragResizeValidationComponent,
+		CalendarMonthViewComponent,
+		CalendarWeekViewComponent,
+		CalendarTimezoneSupportComponent
+
 	],
 	providers: [
 		AgencyService,
+
+		CalendarService
 	],
 	entryComponents: [
 		SideBarComponent, 

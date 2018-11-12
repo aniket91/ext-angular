@@ -1,0 +1,25 @@
+<panel 
+[shadow]="true"
+[title]="panelTitle"
+[layout]="'hbox'"
+[header]="{ titleAlign:'center' }"
+[width]="'100%'"
+[height]="'100%'"
+>
+    <panel
+        [title]="'Calendars'"
+        [ui]="'light'"
+        [width]="150"
+        [bodyPadding]="5"
+        [hidden]="false"
+    >
+        <calendar-list [store]="this.store"></calendar-list>
+    </panel>
+    <calendar-month
+        [flex]= "1"
+        [visibleWeeks]="null"
+        [timezoneOffset]="0"
+        [gestureNavigation]="false"
+        [store]="this.store"
+    ></calendar-month>
+</panel>

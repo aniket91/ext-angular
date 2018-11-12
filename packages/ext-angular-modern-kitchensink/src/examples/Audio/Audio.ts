@@ -35,6 +35,6 @@ export class AudioComponent implements OnInit {
 
     this.playing = !this.playing;
     console.log("this.playing : " + this.playing);
-}
+  }
 
 }
