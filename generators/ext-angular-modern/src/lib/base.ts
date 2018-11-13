@@ -19,24 +19,31 @@ export class base {
     })
   }
 
-    OnChanges(changes: SimpleChanges) {
-    console.log(`OnChanges`)
-    }
-
-  verb:any = 'initialized'
   ngOnChanges(changes: SimpleChanges) {
-    //console.log(`ngOnChanges`)
+    console.log(`ngOnChanges`)
+    console.log(changes)
     let changesMsgs: string[] = []
     for (let propName in changes) {
+      let verb = ''
+      if (changes[propName].firstChange == true) {
+        verb = 'initialized'
+      }
+      else {
+        verb = 'changed'
+      }
       let val = changes[propName].currentValue
       if (this.ext != undefined) {
         var capPropName = propName.charAt(0).toUpperCase() + propName.slice(1)
         this.ext['set'+capPropName](val)
       }
-      changesMsgs.push(`${propName} ${this.verb} to "${val}"`)
+      else {
+        if (verb == 'changed') {
+          console.log('change needed and ext not defined')
+        }
+      }
+      changesMsgs.push(`${propName} ${verb} to "${val}"`)
     }
-    //console.log(`OnChanges: ${changesMsgs.join('; ')}`)
-    this.verb = 'changed' // next time it will be a change
+    console.log(`OnChanges: ${changesMsgs.join('; ')}`)
   }
 
   // Beware! Called frequently!
@@ -107,58 +114,63 @@ export class base {
     //console.log(this.ext)
   }
 
-  @ContentChildren(base, {descendants: false}) extChildren: QueryList<any>
-  @ContentChildren('ext') allChildren: QueryList<any>
+  @ContentChildren('item') items: QueryList<any>
   baseAfterContentInit() {
-    //console.log(this.extChildren)
-    //console.log(this.allChildren)
-    //console.log(`ngAfterContentInit: ${this.extChildren.first.ext.xtype} ${this.extChildren.length} ${this.allChildren.length}`)
-    //console.log(this.allChildren)
-    var parentCmp = this.extChildren.first.ext
-    var parentxtype = this.extChildren.first.ext.xtype
-    if (parentxtype === 'container' &&
-        this.allChildren.first != undefined && 
-        this.allChildren.length === 1) {
-      //console.log(this.allChildren.first.nativeElement)
-      parentCmp.setHtml(this.allChildren.first.nativeElement)
+    if (this.items.length < 2) {
       return
     }
-    var extChildrenArray: any = this.extChildren.toArray()
-    var arrayLength = extChildrenArray.length
-    for (var i = 1; i < arrayLength; i++) { //start after first one
-      var childCmp = extChildrenArray[i].ext
-      var childxtype = childCmp.xtype
-      //console.log(`parent: ${parentxtype}, child: ${childxtype}`)
-      if (parentxtype === 'grid') {
-        if (childxtype === 'column' || childxtype === 'treecolumn' || childxtype === 'textcolumn' || childxtype === 'checkcolumn' || childxtype === 'datecolumn' || childxtype === 'rownumberer' || childxtype === 'numbercolumn') {
-          parentCmp.addColumn(childCmp)
-        }
-      } else if (parentxtype === 'tooltip') {
-        parentCmp.setTooltip(childCmp)
-      } else if (parentxtype === 'plugin') {
-        parentCmp.setPlugin(childCmp)
-      } else if (parentxtype === 'button') {
-        if (childxtype === 'menu') {
-          parentCmp.setMenu(childCmp)
-        } else {
-          console.log('child not added')
-        }
-      } else if (childxtype === 'toolbar' && Ext.isClassic === true) {
-        parentCmp.addDockedItems(childCmp)
-      } else if ((childxtype === 'toolbar' || childxtype === 'titlebar') && parentCmp.getHideHeaders != undefined) {
-        if (parentCmp.getHideHeaders() === false) {
-          var j: any = parentCmp.items.items.length
-          parentCmp.insert(j - 1, childCmp)
-        } else {
-          parentCmp.add(childCmp)
-        }
-      } else if (parentCmp.add != undefined) {
-        parentCmp.add(childCmp)
-      } else {
-        console.log('child not added')
+    this.items.forEach(item => {
+      if (this == item) {
+        return
       }
-    }
+      if (item.nativeElement != undefined) {
+        console.log('parent: ' + this.ext.xtype + ', child: ' + 'container')
+        this.ext.add({xtype: 'container',html: item.nativeElement})
+      }
+      else {
+        if (item.ext != undefined) {
+          console.log('parent: ' + this.ext.xtype + ', child: ' + item.ext.xtype)
+          var parentxtype = this.ext.xtype
+          var childxtype = item.ext.xtype
+          var parentCmp = this.ext
+          var childCmp = item.ext
+
+          if (parentxtype === 'grid') {
+            if (childxtype === 'column' || childxtype === 'treecolumn' || childxtype === 'textcolumn' || childxtype === 'checkcolumn' || childxtype === 'datecolumn' || childxtype === 'rownumberer' || childxtype === 'numbercolumn') {
+              parentCmp.addColumn(childCmp)
+            }
+          } else if (parentxtype === 'tooltip') {
+            parentCmp.setTooltip(childCmp)
+          } else if (parentxtype === 'plugin') {
+            parentCmp.setPlugin(childCmp)
+          } else if (parentxtype === 'button') {
+            if (childxtype === 'menu') {
+              parentCmp.setMenu(childCmp)
+            } else {
+              console.log('child not added')
+            }
+          } else if (childxtype === 'toolbar' && Ext.isClassic === true) {
+            parentCmp.addDockedItems(childCmp)
+          } else if ((childxtype === 'toolbar' || childxtype === 'titlebar') && parentCmp.getHideHeaders != undefined) {
+            if (parentCmp.getHideHeaders() === false) {
+              var j: any = parentCmp.items.items.length
+              parentCmp.insert(j - 1, childCmp)
+            } else {
+              parentCmp.add(childCmp)
+            }
+          } else if (parentCmp.add != undefined) {
+            parentCmp.add(childCmp)
+          } else {
+            console.log('child not added')
+          }
+        }
+        else {
+          console.log('child not handled')
+        }
+      }
+    })
     //this['ready'].emit(parentCmp)
     this['ready'].emit(this)
   }
+
 }

@@ -4,11 +4,8 @@ export declare class base {
     ext: any;
     private _nativeElement;
     constructor(el: ElementRef, metaData: any);
-    OnChanges(changes: SimpleChanges): void;
-    verb: any;
     ngOnChanges(changes: SimpleChanges): void;
     baseOnInit(metaData: any): void;
-    extChildren: QueryList<any>;
-    allChildren: QueryList<any>;
+    items: QueryList<any>;
     baseAfterContentInit(): void;
 }

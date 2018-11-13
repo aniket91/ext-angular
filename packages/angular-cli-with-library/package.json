@@ -1,6 +1,6 @@
 {
   "name": "angular-cli-with-library",
-  "version": "0.0.0",
+  "version": "6.7.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --open",
@@ -9,7 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
-  "private": true,
+  "private": false,
   "dependencies": {
     "@angular/animations": "^6.1.0",
     "@angular/common": "^6.1.0",

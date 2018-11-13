@@ -1,4 +1,7 @@
 GeneratedFolders/*.*
+AllClassesFiles/*.*
+generators/ext-angular-modern/*.*
+package-lock.json
 node_modules
 build
 .vscode
