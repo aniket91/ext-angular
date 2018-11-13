@@ -10,7 +10,7 @@ declare var Ext: any;
 
 @Component({
   selector: 'app-landingpage',
-  templateUrl: './landingpage.component.html',
+  templateUrl: 'landingpage.component.html',
   styleUrls: ['./landingpage.component.css']
 })
 export class LandingpageComponent implements OnInit {
@@ -67,7 +67,7 @@ export class LandingpageComponent implements OnInit {
           else {
               console.log("selectedNavNode not found.")
           }
-          this.createComponent(null);
+          //this.createComponent(null);
 
         }
 
@@ -77,6 +77,25 @@ export class LandingpageComponent implements OnInit {
 
   }
 
+  gridcolumns = [
+		{ text: 'Name', width: 250, dataIndex: 'name' },
+		{ text: 'Email Address', flex: 1, dataIndex: 'email' },
+		{ text: 'Phone Number', width: 250, dataIndex: 'phone' }
+	];
+
+	gridstore = {
+		fields: ['name', 'email', 'phone'],
+		data: [
+			{ name: 'Lisa', email: 'lisa@simpsons.com', phone: '555-111-1224' },
+			{ name: 'Bart', email: 'bart@simpsons.com', phone: '555-222-1234' },
+			{ name: 'Homer', email: 'homer@simpsons.com', phone: '555-222-1244' },
+			{ name: 'Marge', email: 'marge@simpsons.com', phone: '555-222-1254' }
+		]
+	};
+
+	private onGridSelect({record}) {
+		alert(record.data.name);
+	}
 
   createComponent(message) {
     console.log("In createComponent. message : " + message);

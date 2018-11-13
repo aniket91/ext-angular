@@ -1,11 +1,13 @@
 <!--<button [text]="refreshFlag? 'true': 'false'"></button>-->
-<button [text]="refreshFlag? 'true': 'false'" #buttonRef></button>
+<button [text]="refreshFlag? 'true': 'false'"></button>
 <container [padding]="10">
-    <container 
+        <button [text]="refreshFlag? 'true': 'false'"></button>
+    <container
     [layout]="{ type: 'hbox', pack: 'left'}"
     margin="0 0 10 0"
     [defaults]="{ margin: '0 10 0 0' }"
     [width]="550">
+    <button [text]="refreshFlag? 'true': 'false'"></button>
 
     <button ui="action raised" text="Style">
             <menu [defaults]="{ handler: onStyleChange, group: 'buttonstyle' }">
