@@ -4,11 +4,14 @@ import { NgModule } from '@angular/core';
 import * as d3 from 'd3'
 window['d3'] = d3
 
+declare var Ext: any;
+
 //ExtAngular
 import { ExtAngularModernModule } from 'ext-angular-modern'
 
 //services
 import { AgencyService } from './service/agency.service';
+import {AppService} from './app.service';
 
 import { LayoutComponent } from './layout.component';
 
@@ -139,7 +142,9 @@ export const routingModule: ModuleWithProviders = RouterModule.forRoot(routes);
 	providers: [
 		AgencyService,
 
-		CalendarService
+		CalendarService,
+
+		AppService
 	],
 	entryComponents: [
 		SideBarComponent, 
@@ -149,4 +154,13 @@ export const routingModule: ModuleWithProviders = RouterModule.forRoot(routes);
 	],
 	bootstrap: [LayoutComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+	constructor(appService: AppService) {
+		appService.init();
+		console.log("isphone: " + Ext.os.is.Phone);
+		console.log("isDesktop: " + Ext.os.is.Desktop);
+	}
+
+
+ }
