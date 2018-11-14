@@ -33,7 +33,7 @@
   "devDependencies": {
     "@angular/compiler-cli": "^6.1.9",
     "@ngtools/webpack": "^6.2.3",
-    "@sencha/ext-angular-webpack-plugin": "~0.0.1",
+    "@sencha/ext-angular-webpack-plugin": "~6.7.0",
     "angular2-router-loader": "^0.3.5",
     "angular2-template-loader": "^0.6.2",
     "awesome-typescript-loader": "^5.2.1",

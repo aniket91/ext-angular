@@ -11,9 +11,9 @@ const path = require('path')
 //const sourcePath = path.join(__dirname, './src')
 
 module.exports = {
-  context: path.join(__dirname, './src'),
+  context: path.join(__dirname, './'),
   output: {
-    path: path.resolve(__dirname, 'build'),
+    path: path.resolve(__dirname, 'src/build'),
     filename: '[name].js'
   },
   plugins: [
