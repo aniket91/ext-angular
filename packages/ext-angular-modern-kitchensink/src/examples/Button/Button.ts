@@ -59,6 +59,25 @@ export class ButtonComponent implements OnInit, OnChanges  {
   constructor() { }
 
   ngOnChanges(changes: SimpleChanges) {
+
+
+    this.iconCls = this.type.indexOf('Icon') !== -1 ? 'x-fa fa-heart' : null;
+    console.log("iconCls: " + this.iconCls);
+
+
+    if (this.style === 'Menu') {
+      this.menu = '<menu #item [indented]="false"><menuitem #item  text="Item 1"></menuitem><menuitem #item  text="Item 2"/></menuitem><menuitem #item  text="Item 3"></menuitem></menu>';
+    } else {
+        this.ui = this.style.toLowerCase();
+    }
+
+    if (this.round) {
+      this.ui += ' round';
+    }
+
+    console.log("ui: " + this.ui);
+    console.log("style: " + this.style);
+
     // changes.prop contains the old and the new value...\
     console.log("In ngOnChanges. changes : " + changes);
     for (let propName in changes) {
@@ -74,17 +93,6 @@ export class ButtonComponent implements OnInit, OnChanges  {
 
     //this.refreshFlag = false;
 
-    this.iconCls = this.type.indexOf('Icon') !== -1 ? 'x-fa fa-heart' : null;
-    if (this.round) {
-      this.ui += ' round';
-    }
-
-    if (this.style === 'Menu') {
-      this.menu = '<menu [indented]="false"><menuitem text="Item 1"></menuitem><menuitem text="Item 2"/></menuitem><menuitem text="Item 3"></menuitem></menu>';
-  } else {
-      this.ui = this.style.toLowerCase();
-  }
-
     console.log(this.groupLabelProps1.nativeElement.attributes['flex'].value);
     this.groupLabelProps1.nativeElement.setAttribute("test","a");
     console.log(this.groupLabelProps1.nativeElement.attributes['test'].value);
@@ -92,7 +100,7 @@ export class ButtonComponent implements OnInit, OnChanges  {
     console.log(this.layoutPropsVal);
 
     
-        //this does not work for extjs components
+    //this does not work for extjs components
     Object.keys(this.layoutPropsVal).forEach( (propName) => {
       //console.log("layoutProps");
       //this.layoutProps.nativeElement.setAttribute(propName, this.layoutPropsVal[propName]);
