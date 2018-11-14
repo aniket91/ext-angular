@@ -13,8 +13,7 @@ export class AudioComponent implements OnInit {
 
   playing: boolean;
   audio: AudioComponent;
-  //isAndroid = Ext.os.is.Android;
-  isAndroid = true;
+  isAndroid = Ext.os.is.Android;
 
   //@ViewChild('audioRef') audioRef: ElementRef<AudioComponent>;
 
