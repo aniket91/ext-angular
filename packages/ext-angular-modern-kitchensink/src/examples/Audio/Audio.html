@@ -1,9 +1,9 @@
-<container [layout]="{ type: 'vbox', align: 'stretch', pack: 'center' }" [padding]="10">
-    <container 
+<container #item [layout]="{ type: 'vbox', align: 'stretch', pack: 'center' }" [padding]="10">
+    <container #item
         [shadow]="true" 
         [layout]="'fit'"
     >
-        <audio
+        <audio #item
             #audioRef
             [loop]="true" 
             [url]="'resources/audio/crash.mp3'"

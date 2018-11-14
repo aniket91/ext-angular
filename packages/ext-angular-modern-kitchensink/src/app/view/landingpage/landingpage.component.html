@@ -1,19 +1,19 @@
-<container [layout]="'hbox'" [cls]="'main-background'" [width]="'100%'" [height]="'100%'">
-    <container [layout]="'fit'" [flex]="4">
-      <titlebar [docked]="'top'" [shadow] [style]="{'z-index': 2}">
-        <button 
+<container #item [layout]="'hbox'" [cls]="'main-background'" [width]="'100%'" [height]="'100%'">
+    <container #item [layout]="'fit'" [flex]="4">
+      <titlebar #item [docked]="'top'" [shadow] [style]="{'z-index': 2}">
+        <button #item
           [selfAlign]="'left'"
           [iconCls]="'x-fa fa-bars'" 
           [handler]="toggleTree"
           (click)="toggleTree()"
         ></button>
-        <div className="ext ext-sencha" [style]="{margin: '0 5px 0 7px', fontSize: '20px', width: '20px'}"></div>
-        <a href="#" className="app-title">ExtAngular Modern Kitchen Sink - Angular v{{ANGULAR_VERSION}}</a>
+        <div #item class="ext ext-sencha" [style]="{margin: '0 5px 0 7px', fontSize: '20px', width: '20px'}"></div>
+        <a #item href="#" class="app-title">ExtAngular Modern Kitchen Sink - Angular v{{ANGULAR_VERSION}}</a>
       </titlebar>
   
       <!--  Navtree starts-->
-      <container [layout]="'fit'" [flex]="'1'">
-        <panel 
+      <container #item [layout]="'fit'" [flex]="'1'">
+        <panel #item 
         [scrollable]="y" 
         [shadow] = "false"
         [style]="{zIndex: 100, backgroundColor: 'white'}"
@@ -27,8 +27,8 @@
         }"
         [collapsed]="!showTreeFlag"
         >
-        <searchfield [flex]="1" [docked]="'top'" [ui]="'faded'" (onChange)="filterNav()" [margin]="7" ></searchfield>
-        <treelist
+        <searchfield #item [flex]="1" [docked]="'top'" [ui]="'faded'" (onChange)="filterNav()" [margin]="7" ></searchfield>
+        <treelist #item
         [ui]="'nav'"
         [expanderFirst]="false"
         [expanderOnly]="false"
@@ -44,8 +44,8 @@
       <!-- Breadcrums starts-->
       <!-- docked="top" node={selectedNavNode} -->
   
-      <toolbar [docked]="'top'">
-        <button 
+      <toolbar #item [docked]="'top'">
+        <button #item 
         [text]="nodeText" 
         [ui]="app-breadcrumb"
         [handler]="navigate"
@@ -56,9 +56,9 @@
   
       <!-- examples start-->
   
-      <container [layout]="layout" [scrollable]="true"  [autoSize]="layout !== 'fit'">
-        <container [padding]="30" [layout]="'fit'">
-            <template #examplesContainer>
+      <container #item [layout]="layout" [scrollable]="true"  [autoSize]="layout !== 'fit'">
+        <container #item [padding]="30" [layout]="'fit'">
+            <template #item #examplesContainer>
             </template>
         </container> 
       </container>
