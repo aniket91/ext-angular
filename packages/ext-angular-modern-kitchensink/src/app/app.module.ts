@@ -67,7 +67,7 @@ interface ExtAngularRoute extends Route {
 }
 export declare type ExtAngularRoutes = ExtAngularRoute[];
 const routes: ExtAngularRoutes = [
-	{ path: '', redirectTo: '/landingpage', pathMatch: 'full' },
+	{ path: '', redirectTo: '/audio', pathMatch: 'full' },
 	{ path: 'dashboard', component: DashboardComponent, text: 'Dashboard', iconCls: 'x-fa fa-dashboard', leaf: true },
 	{ path: 'agencies', component: AgenciesComponent, text: 'Agencies', iconCls: 'x-fa fa-institution', leaf: true },
 	{ path: 'analyze', component: AnalyzeComponent, text: 'Analyze', iconCls: 'x-fa fa-cog', xtype: 'homeview', leaf: true },
@@ -84,16 +84,16 @@ const routes: ExtAngularRoutes = [
 	//landing page
 	{ path: 'landingpage', component: LandingpageComponent, text: 'LandingPage', iconCls: 'x-fa fa-calendar', xtype: 'homeview', leaf: true },
 
-
 	//example components
-	{ path: 'button', component: ButtonComponent, text: 'Button', iconCls: 'x-fa fa-calendar', xtype: 'homeview', leaf: true },
-	{ path: 'audio', component: AudioComponent, text: 'Audio', iconCls: 'x-fa fa-calendar', xtype: 'homeview', leaf: true },
-	{ path: 'calendarpanel', component: CalendarPanelComponent, text: 'Calendar Panel', iconCls: 'x-fa fa-calendar', xtype: 'homeview', leaf: true },
-	{ path: 'calendardaysview', component: CalendarDaysViewComponent, text: 'Calendar Days view', iconCls: 'x-fa fa-calendar', xtype: 'homeview', leaf: true },
-	{ path: 'calendardragresizevalidationView', component: CalendarDragResizeValidationComponent, text: 'Calendar drah rezize validation view', iconCls: 'x-fa fa-calendar', xtype: 'homeview', leaf: true },
-	{ path: 'calendarmonthview', component: CalendarMonthViewComponent, text: 'Calendar month view', iconCls: 'x-fa fa-calendar', xtype: 'homeview', leaf: true },
-	{ path: 'calendarweekview', component: CalendarWeekViewComponent, text: 'Calendar week view', iconCls: 'x-fa fa-calendar', xtype: 'homeview', leaf: true },
-	{ path: 'calendartzsupportview', component: CalendarTimezoneSupportComponent, text: 'Calendar TZ support view', iconCls: 'x-fa fa-calendar', xtype: 'homeview', leaf: true },
+	//TODO: FOr now we are defining routes as ids of the navtree. Need to to this dynamically.
+	{ path: 'components/buttons/button', component: ButtonComponent, text: 'Button', iconCls: 'x-fa fa-calendar', xtype: 'homeview', leaf: true },
+	{ path: 'components/media/audio', component: AudioComponent, text: 'Audio', iconCls: 'x-fa fa-calendar', xtype: 'homeview', leaf: true },
+	{ path: 'calendar/calendar_panel', component: CalendarPanelComponent, text: 'Calendar Panel', iconCls: 'x-fa fa-calendar', xtype: 'homeview', leaf: true },
+	{ path: 'calendar/days_view', component: CalendarDaysViewComponent, text: 'Calendar Days view', iconCls: 'x-fa fa-calendar', xtype: 'homeview', leaf: true },
+	{ path: 'calendar/drag_resize_validation', component: CalendarDragResizeValidationComponent, text: 'Calendar drah rezize validation view', iconCls: 'x-fa fa-calendar', xtype: 'homeview', leaf: true },
+	{ path: 'calendar/month_view', component: CalendarMonthViewComponent, text: 'Calendar month view', iconCls: 'x-fa fa-calendar', xtype: 'homeview', leaf: true },
+	{ path: 'calendar/week_view', component: CalendarWeekViewComponent, text: 'Calendar week view', iconCls: 'x-fa fa-calendar', xtype: 'homeview', leaf: true },
+	{ path: 'calendar/timezone_support', component: CalendarTimezoneSupportComponent, text: 'Calendar TZ support view', iconCls: 'x-fa fa-calendar', xtype: 'homeview', leaf: true },
 
 ];
 export const routingModule: ModuleWithProviders = RouterModule.forRoot(routes);
@@ -152,7 +152,7 @@ export const routingModule: ModuleWithProviders = RouterModule.forRoot(routes);
 		ChartComponent,
 		ButtonComponent
 	],
-	bootstrap: [LayoutComponent]
+	bootstrap: [LandingpageComponent]
 })
 export class AppModule {
 

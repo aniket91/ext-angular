@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import {CalendarService} from '../Calendar.service';
-import {AppService} from '../../../app/app.service';
 
 declare var Ext: any;
 
@@ -19,9 +18,8 @@ export class CalendarWeekViewComponent implements OnInit {
   panelTitle = Ext.Date.format(new Date(), 'F Y');
   calWeekValue=new Date();
 
-  constructor(private calService: CalendarService, private appService: AppService) { 
+  constructor(private calService: CalendarService) { 
       console.log("Calendar panel component constructor invoked");
-      appService.init();
       this.isPhone = Ext.os.is.Phone;
       console.log("isphone: " + Ext.os.is.Phone + " isPhone: " + this.isPhone);
       console.log("isDesktop: " + Ext.os.is.Desktop);

@@ -5,22 +5,20 @@ import { Location } from '@angular/common';
 import { Router, NavigationEnd } from '@angular/router';
 
 import {ButtonComponent} from '../../../examples/Button/Button';
+import { VERSION } from '@angular/core';
 
 declare var Ext: any;
 
 @Component({
-  selector: 'app-landingpage',
+  selector: 'app-root',
   templateUrl: 'landingpage.component.html',
   styleUrls: ['./landingpage.component.css']
 })
 export class LandingpageComponent implements OnInit {
 
   //code = window._code;
-  
-  treeStore = Ext.create('Ext.data.TreeStore', {
-    rootVisible: true,
-    root: navTreeRoot
-  });
+
+  ANGULAR_VERSION = VERSION.full;
 
   nodeId;
   selectedNavNode;
@@ -28,16 +26,19 @@ export class LandingpageComponent implements OnInit {
   layout = "fit";
   files;
 
-
   nodeText;
   nodeItems = [];
 
-  componentRef: any;
+  filterRegex;
+  showTreeFlag = true;
 
-  @ViewChild('examplesContainer', { read: ViewContainerRef }) entry: ViewContainerRef;
+  
+  treeStore = Ext.create('Ext.data.TreeStore', {
+    rootVisible: true,
+    root: navTreeRoot
+  });  
 
-
-  constructor(location: Location, router: Router, changeDetectorRef: ChangeDetectorRef,
+  constructor(location: Location,private router: Router, changeDetectorRef: ChangeDetectorRef,
     private resolver: ComponentFactoryResolver) { 
     router.events.subscribe((val) => {
       if(val instanceof NavigationEnd) {
@@ -58,8 +59,8 @@ export class LandingpageComponent implements OnInit {
             this.component = this.selectedNavNode.get('component');
             console.log("Component: " + this.component);
             if(this.selectedNavNode.get('layout') != null) {
-              //this.layout = this.selectedNavNode.get('layout');
-              //console.log("this.layout : " + this.layout);
+              this.layout = this.selectedNavNode.get('layout');
+              console.log("this.layout : " + this.layout);
             }
             //this.files = this.code[this.nodeText.replace(/\s/g, '')];
             //console.log("this.files : " + this.files);
@@ -67,7 +68,6 @@ export class LandingpageComponent implements OnInit {
           else {
               console.log("selectedNavNode not found.")
           }
-          //this.createComponent(null);
 
         }
 
@@ -77,48 +77,10 @@ export class LandingpageComponent implements OnInit {
 
   }
 
-  gridcolumns = [
-		{ text: 'Name', width: 250, dataIndex: 'name' },
-		{ text: 'Email Address', flex: 1, dataIndex: 'email' },
-		{ text: 'Phone Number', width: 250, dataIndex: 'phone' }
-	];
-
-	gridstore = {
-		fields: ['name', 'email', 'phone'],
-		data: [
-			{ name: 'Lisa', email: 'lisa@simpsons.com', phone: '555-111-1224' },
-			{ name: 'Bart', email: 'bart@simpsons.com', phone: '555-222-1234' },
-			{ name: 'Homer', email: 'homer@simpsons.com', phone: '555-222-1244' },
-			{ name: 'Marge', email: 'marge@simpsons.com', phone: '555-222-1254' }
-		]
-	};
-
-	private onGridSelect({record}) {
-		alert(record.data.name);
-	}
-
-  createComponent(message) {
-    console.log("In createComponent. message : " + message);
-    this.entry.clear();
-    const factory = this.resolver.resolveComponentFactory(ButtonComponent);
-    this.componentRef = this.entry.createComponent(factory);
-    console.log(this.componentRef);
-    this.componentRef.instance.message = message;
-  }
-
-
-  destroyComponent() {
-    console.log("In destroyComponent.");
-    this.componentRef.destroy();
-  }
-
   ngOnInit() {
 
   } 
 
-  filterRegex;
-  showTreeFlag = true;
-  
 
   toggleTree = function(){
     console.log("toggleTree. Before showTreeFlag : " + this.showTreeFlag);
@@ -126,14 +88,11 @@ export class LandingpageComponent implements OnInit {
     console.log("toggleTree. After showTreeFlag : " + this.showTreeFlag);
   }
 
-  filterNav(){
-    console.log("In filterNav1");
-  }
-
-  filterNav1(field, value) {
-    console.log("In filterNav");
+  filterNav = function(field, oldValue, newValue) {
+    debugger;
+    console.log("In filterNav.oldValue : " + oldValue + " newValue: " + newValue);
     const store = this.treeStore;
-    var escapeRegex = Ext.String.escapeRegex(value);
+    var escapeRegex = Ext.String.escapeRegex(newValue);
     console.log(escapeRegex);
     this.filterRegex = new RegExp(`(escapeRegex)`, 'i');
     store.filterBy(record => this.containsMatches(record));
@@ -147,8 +106,14 @@ export class LandingpageComponent implements OnInit {
     return found;
   }
 
-  selectionChanged(tree, node) {
-    console.log("Selection changed!. Tree : " + tree + " node : " + node);
+  selectionChanged(event) {
+    var record = event.record;
+    if(record && record.data && record.data.id) {
+      var componentSelectedId = record.data.id;
+      console.log("ID: " + componentSelectedId)
+      this.router.navigate([componentSelectedId]);
+    }
+
   }
 
   navigate(node) {

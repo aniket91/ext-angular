@@ -1,9 +1,9 @@
 <panel
+#item
 [shadow]="true"
+[height]="600"
 [title]="panelTitle"
 [layout]="'fit'"
-[width]="'100%'"
-[height]="'100%'"
 [header]="{
     layout: 'hbox',
     items: [{
@@ -40,6 +40,7 @@
 
 
 <calendar-day 
+    #item
     [startTime]= "6"
     [endTime] = "22"
     [visibleDays] = "2"

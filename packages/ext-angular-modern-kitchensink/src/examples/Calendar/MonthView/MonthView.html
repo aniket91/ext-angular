@@ -3,19 +3,21 @@
 [title]="panelTitle"
 [layout]="'hbox'"
 [header]="{ titleAlign:'center' }"
-[width]="'100%'"
-[height]="'100%'"
+[height]="600"
+#item
 >
     <panel
+        #item
         [title]="'Calendars'"
         [ui]="'light'"
         [width]="150"
         [bodyPadding]="5"
         [hidden]="false"
     >
-        <calendar-list [store]="this.store"></calendar-list>
+        <calendar-list #item [store]="this.store"></calendar-list>
     </panel>
     <calendar-month
+         #item
         [flex]= "1"
         [visibleWeeks]="null"
         [timezoneOffset]="0"
